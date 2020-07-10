@@ -22,9 +22,9 @@ void loop() {
     //Serial.println(inp==49); //# 바이너리값 1==49
     if(inp == 49){
      
-      BTSerial.write(_time); //#사용시간
+      BTSerial.print(_time); //#사용시간
       //  BTSerial.print(_time); 
-      BTSerial.write(delta); //#마우스 이동량 (움직인 거리)
+      BTSerial.print(delta); //#마우스 이동량 (움직인 거리)
       Serial.println(_time); //#사용시간
       Serial.println(delta); //#마우스 이동량 (움직인 거리)
     }
