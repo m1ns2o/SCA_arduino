@@ -14,6 +14,7 @@
 #define wrist A0
 
 #define vibrate 4
+#define Interval 60000
 
 
 SoftwareSerial BTSerial(tx,rx);
@@ -24,7 +25,23 @@ int sequential = 0;
 bool status = 0;
 
 void delta_movement(int RU, int RD, int LU, int LD){
+	if(RU+RL > LU+LD){
+		if((RU+LU) > (RD+RU)){
 
+		}
+		else{
+			
+		}
+	}
+
+	else{
+		if((RU+LU) > (RD+RU)){
+
+		}
+		else{
+
+		}
+	}
 	// return delta;  
 }
 
@@ -46,7 +63,7 @@ void data_send(int inp){
 
 
 void setup() {
-	MsTimer2::set(60000, count_time);
+	MsTimer2::set(Interval, count_time);
     BTSerial.begin(9600);
     Serial.begin(9600);
 	pinMode(vibrate, OUTPUT);
@@ -54,14 +71,14 @@ void setup() {
 
 
 void loop() {
-	int inp;
+	int inp, press;
 	if(BTSerial.available()){
 		inp = BTSerial.read();
 		data_send(inp);
 	}
 	//전송
-
-	if(analogRead(wrist) > 300){
+	press = analogRead(wrist)
+	if(press > 300){
 		MsTimer2::start();
 		status = 1;
 		if(sequential > 30){
@@ -69,6 +86,12 @@ void loop() {
 			sequential = 0;
 			Serial.println("vibrate_true");
 		}
+		if(press > 600){
+			digitalWrite(vibrate, HIGH);
+			Serial.println("vibrate_true");
+			BTSerial.print(9)
+		}
+		
 		delta_movement(RU, RD, LU, LD);
 	}
 	// 사용중
